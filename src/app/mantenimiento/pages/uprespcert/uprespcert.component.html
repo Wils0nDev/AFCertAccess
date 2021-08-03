@@ -6,17 +6,39 @@
     <mat-card fxFlex="100" fxFlex.xs="100" class="periodo-titulo">
         <form [formGroup]="formu">
             <mat-card-content class="mat-content-iz" fxFlex="80" fxFlex.xs="100" fxLayout="row wrap">
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia" [data]="companiasArr"></app-mat-select-form>
-                <div fxFlex="10" fxFlex.xs="100"></div>
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='sistema' label="Sistema" [data]="sistemasArr"></app-mat-select-form>
+                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia"
+                    [data]="companias">
+                </app-mat-select-form>
 
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='validado' label="Validado" [data]="validadosArr"></app-mat-select-form>
-                
+                <div fxFlex="10" fxFlex.xs="100"></div>
+                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='periodo' label="Periodo"
+                    [data]="periodos">
+                </app-mat-select-form>
+
+
+                <div fxFlex="10" fxFlex.xs="100"></div>
+
+                <app-mat-input fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='cdr' label="CDR">
+                </app-mat-input>
+
+                <div fxFlex="10" fxFlex.xs="100"></div>
+
+                <app-mat-input fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='area' label="Area">
+                </app-mat-input>
+
+                <div fxFlex="10" fxFlex.xs="100"></div>
+
+                <app-mat-input fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='aprc'
+                    label="Ape. Pat. Responsable Cert.">
+                </app-mat-input>
+
+
+
             </mat-card-content>
-            <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end" style="margin-right: 5px">
-                <app-mat-button titlebutton="Buscar" icon="search"></app-mat-button>
+            <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end"
+                style="margin-right: 5px">
+                <app-mat-button titlebutton="Consultar" icon="search"></app-mat-button>
                 <app-mat-button titlebutton="Salir" icon="close"></app-mat-button>
-                <!-- <app-mat-button [titlebutton]="saveN" [icon]="save" [submit]="submit" (saveClick)="saveButon($event)"></app-mat-button> -->
             </mat-card-actions>
         </form>
     </mat-card>
@@ -27,40 +49,40 @@
         <!-- <mat-card-title>tabla</mat-card-title> -->
         <mat-card-content fxFlex="100" fxFlex.xs="100" fxLayout="row wrap" class="mat-elevation-z8 tabla-content">
             <table mat-table [dataSource]="dataSource" class="table-data">
-                <ng-container matColumnDef="accion">
+                <ng-container matColumnDef="eliminar">
                     <th mat-header-cell *matHeaderCellDef class="column-center"> Acción </th>
                     <td mat-cell *matCellDef="let element" class="action-btn column-center">
                         <button mat-raised-button color="primary">Editar</button>
-                        <span>&nbsp;&nbsp;</span>
-                        <button mat-raised-button color="warn">Eliminar</button>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="eliminar">
-                    <th mat-header-cell *matHeaderCellDef class="column-center"> Usuario </th>
-                    <td mat-cell *matCellDef="let element" class="column-center"> {{element.eliminar}} </td>
-                </ng-container>
+               
                 <ng-container matColumnDef="compania">
-                    <th mat-header-cell *matHeaderCellDef class="column-center"> Código Emp </th>
-                    <td mat-cell *matCellDef="let element" class="column-center"> {{element.compania}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Compañia </th>
+                    <td mat-cell *matCellDef="let element"> {{element.compania}} </td>
                 </ng-container>
                 <ng-container matColumnDef="periodo">
-                    <th mat-header-cell *matHeaderCellDef> Empleado </th>
+                    <th mat-header-cell *matHeaderCellDef> Periodo </th>
                     <td mat-cell *matCellDef="let element"> {{element.periodo}} </td>
                 </ng-container>
                 <ng-container matColumnDef="fechai">
-                    <th mat-header-cell *matHeaderCellDef class="column-center"> Código Emp </th>
-                    <td mat-cell *matCellDef="let element" class="column-center"> {{element.fechai}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Fecha Inicial </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fechai}} </td>
                 </ng-container>
                 <ng-container matColumnDef="fechac">
-                    <th mat-header-cell *matHeaderCellDef> Empleado </th>
+                    <th mat-header-cell *matHeaderCellDef> Fecha Cierre </th>
                     <td mat-cell *matCellDef="let element"> {{element.fechac}} </td>
+                </ng-container>
+                <ng-container matColumnDef="situacion">
+                    <th mat-header-cell *matHeaderCellDef> Situación </th>
+                    <td mat-cell *matCellDef="let element"> {{element.situacion}} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
-            <mat-paginator class="paginador" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            <mat-paginator class="paginador" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+            </mat-paginator>
         </mat-card-content>
     </mat-card>
 </section>

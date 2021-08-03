@@ -13,7 +13,12 @@ const routes: Routes = [
 
   { path : Rutas.inicio, 
     loadChildren: () => import('./inicio/inicio.module').then(mod => mod.InicioModule) 
+  },
+
+  { path : Rutas.mantenimiento, 
+    loadChildren: () => import('./mantenimiento/mantenimiento.module').then(mod => mod.MantenimientoModule) 
   }
+
 
 
 ];
