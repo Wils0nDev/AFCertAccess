@@ -1,0 +1,6 @@
+
+    <mat-toolbar fxLayout="row" fxLayoutAlign="space-around center" color="primary">   
+      <span>My App</span>
+      <app-mat-menu *ngFor="let item of menuNew" [description] = "item.titulo" [opciones]="item.options"></app-mat-menu>
+      <app-mat-menu [description] = "perfil" [opciones]="perfilArr"></app-mat-menu>
+    </mat-toolbar>

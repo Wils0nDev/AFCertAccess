@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+ 
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ 
+.btnSave{
+ background-color: rgb(19, 73, 173);
+ color: white;
+}
+ 
+.btnDelete{
+ background-color: red;
+ color: white;
+}
+ 
+.btnClose{
+ background-color: rgb(14, 85, 143);
+ color: white;
+}
+ 
+.btnAdd{
+ background-color: green;
+ color: white;
+}
+ 
+.btnRefr{
+ background-color: rgb(159, 185, 10);
+ color: white;
+}
+ 
+.column-center{
+ text-align: center !important;
+}
+ 
+.section-content{
+ margin-bottom: 15px; 
+}
+ 
+.tabla-content{
+ overflow: auto;
+}
+ 
+.table-data{
+ width: 100%;
+ max-width: 100%;
+}
+ 
+.paginador{
+ width: 100%;
+}
+
+.table-data th{
+    background-color:rgb(235, 237, 239);
+    color: black;
+    font-weight: 500;
+}

@@ -1,0 +1,6 @@
+button{
+    background: linear-gradient(90deg, rgba(0,52,73,1) 30%, rgba(0,127,171,1) 100%);
+    min-width: 125px;
+    text-align: left;
+    color: white;
+    }
