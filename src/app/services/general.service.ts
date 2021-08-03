@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import  { apimenu } from '../api/apiprueba';
+import  { companias, periodos, periodos1, sistemas } from '../api/datos';
 
 const urlBase = environment.urlBase;
 
@@ -15,27 +16,29 @@ export class GeneralService {
 
 
   getOptionsMenu(){
-    let companiasArr = of(apimenu);
-    return companiasArr;
+    let arr = of(apimenu);
+    return arr;
   }
 
   getCompaniaService() {
     // const url = `${urlBase}/companias`;
     // return this.http.get(url);
-    let companiasArr = of([
-      { id: 1, name: 'SCOTIABANK  PERÚ S.A.A' },
-      { id: 1, name: 'SERVICIO DE COBRANZAS E INVERS' },
-      { id: 1, name: 'COMPANIAX' },
-    ]);
-    return companiasArr;
+    let arr = of(companias);
+    return arr;
   }
 
   getSistemaService() {
-    let sistemasArr = of([
-      { id: 1, name: 'PRUEBA' },
-      { id: 1, name: 'SYS' },
-      { id: 1, name: 'SPRING' },
-    ]);
-    return sistemasArr;
+    let arr = of(sistemas);
+    return arr;
+  }
+
+  getPeriodosService(id: number) {
+    let arr;
+    if(id == 1){
+      arr = of(periodos1);
+    }else{
+      arr = of(periodos);
+    }
+    return arr;
   }
 }

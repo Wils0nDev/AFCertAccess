@@ -7,23 +7,18 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./mat-select-form.component.css']
 })
 export class MatSelectFormComponent implements OnInit {
-  // @Input() valor: any = '';
-  // @Input() invalid: boolean = false;
-  // @Output() setValue = new EventEmitter();
   @Input() data: any;
   @Input() label: string = '';
   @Input() formulario: FormGroup;
   @Input() name: any;
 
+  @Output() changeSelect : EventEmitter<String> = new EventEmitter();
+
   constructor() { }
 
-  ngOnInit(): void {
-    // this.invalid = false;
-  }
+  ngOnInit(): void {}
 
-  // onChange(){
-  //   console.log("value: ", this.valor, this.invalid);
-  //   console.log("valueForm: ", this.nombre, this.formulario);
-  //   this.setValue.emit(this.valor);
-  // }
+  onChange(valor){
+    this.changeSelect.emit(valor);
+  }
 }

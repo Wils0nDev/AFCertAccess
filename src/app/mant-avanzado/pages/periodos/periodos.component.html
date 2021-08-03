@@ -6,18 +6,18 @@
     <mat-card fxFlex="100" fxFlex.xs="100" class="periodo-titulo">
         <form [formGroup]="formu">
             <mat-card-content class="mat-content-iz" fxFlex="80" fxFlex.xs="100" fxLayout="row wrap">
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia" [data]="companias">
+                <app-mat-select-form fxFlex="40" fxFlex.xs="100" (changeSelect)="changeCompania($event)" [formulario]='formu' name='compania' label="Compañia" [data]="companiasArr">
                 </app-mat-select-form>
 
                 <div fxFlex="10" fxFlex.xs="100"></div>
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='periodo' label="Periodo" [data]="periodos">
+                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='periodo' label="Periodo" [data]="periodosArr">
                 </app-mat-select-form>
                 
                 <app-mat-datepicker-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='fechaInicial' label="Fecha Inicial"></app-mat-datepicker-form>
                 <div fxFlex="10" fxFlex.xs="100"></div>
                 <app-mat-datepicker-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='fechaCierre' label="Fecha Cierre"></app-mat-datepicker-form>
                 
-                <app-mat-select-form  fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='situacion' label="Situación" [data]="periodos"></app-mat-select-form>
+                <app-mat-select-form  fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='situacion' label="Situación" [data]="situacion"></app-mat-select-form>
             
             </mat-card-content>
             <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end" style="margin-right: 5px">
@@ -64,7 +64,6 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
             <mat-paginator class="paginador" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
         </mat-card-content>
     </mat-card>

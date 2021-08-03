@@ -47,15 +47,19 @@ export class EquivalenciaComponent implements OnInit {
   getCompanias() {
     this.generalService.getCompaniaService()
       .subscribe(
-        (data) => this.companiasArr = data,
-        (error) => console.log("ocurrio un error")
+        (data: any) => {
+          this.companiasArr = data.resultFisrt;
+          let idVal = this.companiasArr.length > 0 ? this.companiasArr[0].id: null;
+          this.formu.controls.compania.setValue(idVal);
+        },
+        (error) => console.log("ocurrio un error", error)
       );
   }
 
   getSistemas() {
     this.generalService.getSistemaService()
       .subscribe(
-        (data) => this.sistemasArr = data,
+        (data) => this.sistemasArr = data.resultFisrt,
         (error) => console.log("ocurrio un error")
       );
   }
@@ -68,7 +72,7 @@ export class EquivalenciaComponent implements OnInit {
   }
 
   getData() {
-    this.mantavanzadoService.getEquivalenciasService().subscribe(
+    this.mantavanzadoService.getDataEquivalenciasService().subscribe(
       (data) => this.ELEMENT_DATA = data,
       (error) => console.log("ocurrio un error equivalencias")
     );
