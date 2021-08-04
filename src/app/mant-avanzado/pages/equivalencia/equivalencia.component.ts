@@ -66,8 +66,8 @@ export class EquivalenciaComponent implements OnInit {
 
   getValidado() {
     this.validadosArr = [
-      { id: 1, name: 'SI' },
-      { id: 1, name: 'NO' },
+      { code: 1, description: 'SI' },
+      { code: 1, description: 'NO' },
     ];
   }
 

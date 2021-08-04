@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ISelectComp } from 'src/app/interfaces/formularios';
 
 @Component({
   selector: 'app-mat-select-form',
@@ -7,10 +8,10 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./mat-select-form.component.css']
 })
 export class MatSelectFormComponent implements OnInit {
-  @Input() data: any;
+  @Input() data: ISelectComp;
   @Input() label: string = '';
   @Input() formulario: FormGroup;
-  @Input() name: any;
+  @Input() name: string = '';
 
   @Output() changeSelect : EventEmitter<String> = new EventEmitter();
 

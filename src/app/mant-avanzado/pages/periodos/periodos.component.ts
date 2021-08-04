@@ -19,10 +19,9 @@ export class PeriodosComponent implements OnInit {
   public submit: string = "submit"
 
   situacion = [
-    {id: null, name:"Selecionar"},
-    {id: 1, name:"peru"},
-    {id: 2, name:"lima"},
-    {id: 3, name:"chiclayo"},
+    {code: 1, description:"peru"},
+    {code: 2, description:"lima"},
+    {code: 3, description:"chiclayo"},
   ]
 
   displayedColumns: string[] = ['eliminar', 'compania', 'periodo', 'fechai', 'fechac', 'situacion'];
@@ -39,8 +38,6 @@ export class PeriodosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompanias();
-    this.getData();
-    
   }
 
   crearForm() {
@@ -58,21 +55,11 @@ export class PeriodosComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.companiasArr = data.resultFisrt;
-          let idVal = this.companiasArr.length > 0 ? this.companiasArr[0].id: null;
+          let idVal = this.companiasArr.length > 0 ? this.companiasArr[0].code: null;
           this.formu.controls.compania.setValue(idVal);
-          this.getPeriodos(idVal);
+          this.getPeriodosInit(idVal);
         },
         (error) => console.log("ocurrio un error", error)
-      );
-  }
-
-  getPeriodos(id: number) {
-    console.log("cambio: ", id);
-    
-    this.generalService.getPeriodosService(id)
-      .subscribe(
-        (data) => this.periodosArr = data.resultFisrt,
-        (error) => console.log("ocurrio un error")
       );
   }
 
@@ -80,8 +67,34 @@ export class PeriodosComponent implements OnInit {
     this.getPeriodos(val);
   }
 
+  getPeriodosInit(id: string) {
+    this.generalService.getPeriodosService(id)
+      .subscribe(
+        (data) => {
+          this.periodosArr = data.resultFisrt;
+          let idVal = this.periodosArr.length > 0 ? this.periodosArr[0].code: null;
+          this.formu.controls.periodo.setValue(idVal);
+          this.getData();
+        },
+        (error) => console.log("ocurrio un error")
+      );
+  }
+
+  getPeriodos(id: string) {
+    this.generalService.getPeriodosService(id)
+      .subscribe(
+        (data) => {
+          this.periodosArr = data.resultFisrt;
+          let idVal = this.periodosArr.length > 0 ? this.periodosArr[0].code: null;
+          this.formu.controls.periodo.setValue(idVal);
+        },
+        (error) => console.log("ocurrio un error")
+      );
+  }
+
   getData() {
-    this.mantavanzadoService.getDataPeriodosService().subscribe(
+    console.log("getData", this.formu.value);
+    this.mantavanzadoService.getDataPeriodosService(this.formu.value).subscribe(
       (data) => this.ELEMENT_DATA = data,
       (error) => console.log("ocurrio un error equivalencias")
     );
@@ -89,15 +102,13 @@ export class PeriodosComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  saveButon(v){
+  saveButon(val){
     if(this.formu.valid){
       console.log("valid", this.formu.value);
     }else{
-      
       console.log("invalid", this.formu.get('compania').value);
       this.formu.markAllAsTouched();
     }
   }
-  
 
 }

@@ -14,31 +14,30 @@ export class GeneralService {
 
   constructor(private http: HttpClient) { }
 
-
   getOptionsMenu(){
+    // const url = `${urlBase}/companias`;
+    // return this.http.get(url);
     let arr = of(apimenu);
     return arr;
   }
 
   getCompaniaService() {
-    // const url = `${urlBase}/companias`;
-    // return this.http.get(url);
     let arr = of(companias);
+    return arr;
+  }
+
+  getPeriodosService(id: string) {
+    let arr;
+    if(id == '01'){
+      arr = of(periodos1);
+    }else{
+      arr = of(periodos);
+    }
     return arr;
   }
 
   getSistemaService() {
     let arr = of(sistemas);
-    return arr;
-  }
-
-  getPeriodosService(id: number) {
-    let arr;
-    if(id == 1){
-      arr = of(periodos1);
-    }else{
-      arr = of(periodos);
-    }
     return arr;
   }
 }
