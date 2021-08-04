@@ -42,9 +42,10 @@ export class ModalBusquedatrabajadorComponent implements OnInit {
   crearForm() {
     this.formu = this.fb.group({
       compania: [1 , [Validators.required]],
-      area: [1],
-      periodo: [1 , [Validators.required]],
-      estado: [1],
+      codee: [1],
+      app: [1 , [Validators.required]],
+      apm: [1],
+      name : [1]
     });
   }
 }

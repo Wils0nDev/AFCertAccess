@@ -5,16 +5,19 @@
 <section fxLayout="row wrap" fxLayoutAlign="space-between" class="section-content">
     <mat-card fxFlex="100" fxFlex.xs="100">
         <mat-card-content class="mat-content-iz" fxFlex="80" fxFlex.xs="100" fxLayout="row wrap">
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia" [data]="companias"></app-mat-select-form>
-                 <div fxFlex="10" fxFlex.xs="100"></div>
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='estado' label="Área" [data]="companias"></app-mat-select-form>
-                <div fxFlex="10" fxFlex.xs="100"></div>
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='periodo' label="Periodo" [data]="companias"></app-mat-select-form>
-                <div fxFlex="10" fxFlex.xs="100"></div>
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='estado' label="Estado" [data]="companias"></app-mat-select-form>
-
+            <app-mat-select-form fxFlex="90" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia"
+                [data]="companias"></app-mat-select-form>
+            <app-mat-input fxFlex="90" fxFlex.xs="100" [formulario]='formu' name='codee' label="Cod. Empleado">
+            </app-mat-input>
+            <app-mat-input fxFlex="90" fxFlex.xs="100" [formulario]='formu' name='app' label="Apellido Paterno">
+            </app-mat-input>
+            <app-mat-input fxFlex="90" fxFlex.xs="100" [formulario]='formu' name='apm' label="Apellido Materno">
+            </app-mat-input>
+            <app-mat-input fxFlex="90" fxFlex.xs="100" [formulario]='formu' name='name' label="Nombres">
+            </app-mat-input>
         </mat-card-content>
-        <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end" style="margin-right: 5px">
+        <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end"
+            style="margin-right: 5px">
             <app-mat-button titlebutton="Consultar" icon="search"></app-mat-button>
             <app-mat-button titlebutton="Aceptar" icon="save"></app-mat-button>
             <app-mat-button titlebutton="Cancelar" icon="close" mat-dialog-close></app-mat-button>
@@ -40,7 +43,8 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <mat-paginator class="paginador" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            <mat-paginator class="paginador" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+            </mat-paginator>
         </mat-card-content>
     </mat-card>
 </section>
