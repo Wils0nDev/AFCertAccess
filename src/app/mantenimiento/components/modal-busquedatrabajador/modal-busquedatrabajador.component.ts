@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MantenimientoService } from '../../services/mantenimiento.service';
+import { ISelectComp } from '../../../interfaces/formularios';
 
 const ELEMENT_DATA: any[] = [
   {eliminar: 1, compania: 'Banco'},
@@ -21,7 +23,7 @@ const ELEMENT_DATA: any[] = [
 export class ModalBusquedatrabajadorComponent implements OnInit {
 
   formu: FormGroup;
-
+  rangeemployes : ISelectComp[] = []
   companias = [
     {id: null, name:"Selecionar"},
     {id: 1, name:"peru"},
@@ -33,7 +35,7 @@ export class ModalBusquedatrabajadorComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private _trabajador : MantenimientoService) { }
 
   ngOnInit(): void {
     this.crearForm();
@@ -45,7 +47,19 @@ export class ModalBusquedatrabajadorComponent implements OnInit {
       codee: [1],
       app: [1 , [Validators.required]],
       apm: [1],
-      name : [1]
+      name : [1],
+      rangosearch : []
     });
   }
+
+
+  getDataEmployee(){
+    this._trabajador.getDataEmployee()
+    .subscribe(
+      reesponse => {
+        this.rangeemployes = reesponse.resultSecond
+      } 
+    )
+  }
+
 }

@@ -1,4 +1,4 @@
 export interface ISelectComp {
-  code: string;
+  code: any;
   description: string;
 }
