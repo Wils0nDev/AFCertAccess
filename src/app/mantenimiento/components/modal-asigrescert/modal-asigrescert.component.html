@@ -1,0 +1,42 @@
+<section fxLayout="row wrap" fxLayoutAlign="space-between">
+    <app-mat-card-title fxFlex="100%" fxFlex.xs="100%" title="Certificación de Accesos"></app-mat-card-title>
+</section>
+
+<section fxLayout="row wrap" fxLayoutAlign="space-between">
+    <mat-card fxFlex="100" fxFlex.xs="100" class="periodo-titulo">
+        <mat-card-content class="mat-content-iz" fxFlex="80" fxFlex.xs="100" fxLayout="row wrap">
+                
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Compañia" >
+            </app-mat-input>
+            <div fxFlex="5" fxFlex.xs="100"></div>
+            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='cdr' label="" >
+            </app-mat-input>
+           
+            <app-mat-input fxFlex="100" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Periodo" >
+            </app-mat-input>
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Area" >
+            </app-mat-input>
+            <div fxFlex="5" fxFlex.xs="100"></div>
+
+            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='cdr' label="" >4
+            </app-mat-input>
+
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Responsable Cert." >
+            </app-mat-input>
+            
+            <button mat-mini-fab color="primary" (click)="openModalBusqueda($event)" >
+                <mat-icon>search</mat-icon>
+            </button>
+
+            <app-mat-input fxFlex="70" fxFlex.xs="100" [formulario]='formu' name='cdr' label="" >4
+            </app-mat-input>
+
+        </mat-card-content>
+        <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end" style="margin-right: 5px">
+            <app-mat-button titlebutton="Refrescar" icon="autorenew"></app-mat-button>
+            <app-mat-button titlebutton="Regresar" icon="close" mat-dialog-close></app-mat-button>
+            <app-mat-button titlebutton="Exp. Excel" icon="save"></app-mat-button>
+        </mat-card-actions>
+    </mat-card>
+</section>
+
