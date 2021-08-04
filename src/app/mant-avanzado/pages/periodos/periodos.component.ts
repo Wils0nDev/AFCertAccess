@@ -93,7 +93,6 @@ export class PeriodosComponent implements OnInit {
   }
 
   getData() {
-    console.log("getData", this.formu.value);
     this.mantavanzadoService.getDataPeriodosService(this.formu.value).subscribe(
       (data) => this.ELEMENT_DATA = data,
       (error) => console.log("ocurrio un error equivalencias")
