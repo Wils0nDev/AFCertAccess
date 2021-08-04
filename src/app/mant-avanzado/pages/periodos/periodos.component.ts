@@ -63,10 +63,6 @@ export class PeriodosComponent implements OnInit {
       );
   }
 
-  changeCompania(val){
-    this.getPeriodos(val);
-  }
-
   getPeriodosInit(id: string) {
     this.generalService.getPeriodosService(id)
       .subscribe(
@@ -78,6 +74,10 @@ export class PeriodosComponent implements OnInit {
         },
         (error) => console.log("ocurrio un error")
       );
+  }
+
+  changeCompania(val){
+    this.getPeriodos(val);
   }
 
   getPeriodos(id: string) {

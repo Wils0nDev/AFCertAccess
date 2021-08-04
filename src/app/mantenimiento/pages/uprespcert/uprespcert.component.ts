@@ -4,15 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalAsigrescertComponent } from '../../components/modal-asigrescert/modal-asigrescert.component';
 import { MatDialog } from '@angular/material/dialog';
-const ELEMENT_DATA: any[] = [
-  {eliminar: 1, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 2, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 3, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 4, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 5, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 6, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 7, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-];
+import { GeneralService } from 'src/app/services/general.service';
+import { MantenimientoService } from '../../services/mantenimiento.service';
+import { ISelectComp } from 'src/app/interfaces/formularios';
 
 @Component({
   selector: 'app-uprespcert',
@@ -20,67 +14,112 @@ const ELEMENT_DATA: any[] = [
   styleUrls: ['./uprespcert.component.css']
 })
 export class UprespcertComponent implements OnInit {
-
   formu: FormGroup;
+  public title: string = "Gestión Responsable de Certificación";
+  public companiasArr: ISelectComp[] = [];
+  public periodosArr: ISelectComp[] = [];
 
-  public title : string = "Mantenimiento de Calendario de Procesos";
-
-  public submit: string = "submit"
-
-  companias = [
-    {id: null, name:"Selecionar"},
-    {id: 1, name:"peru"},
-    {id: 2, name:"lima"},
-    {id: 3, name:"chiclayo"},
-  ];
-
-  periodos = [
-    {id: null, name:"Selecionar"},
-    {id: 1, name:"peru"},
-    {id: 2, name:"lima"},
-    {id: 3, name:"chiclayo"},
-  ]
-
-  displayedColumns: string[] = ['eliminar', 'compania', 'periodo', 'fechai', 'fechac', 'situacion'];
+  displayedColumns: string[] = ['accion', 'codarea', 'area', 'responsable', 'ciaresp', 'situacion'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
- 
+  ELEMENT_DATA: any[];
+  dataSource = new MatTableDataSource<any>();
 
-  constructor(private fb: FormBuilder,  public dialog: MatDialog) { }
+  constructor(private fb: FormBuilder,
+    public dialog: MatDialog,
+    private generalService: GeneralService,
+    private mantenimientoService: MantenimientoService
+  ) {
+    this.crearForm();
+  }
 
   ngOnInit(): void {
-    this.crearForm();
-    this.dataSource.paginator = this.paginator;
-    
-    // let nombre = localStorage.getItem("nombre");
-    // console.log("aaa: ", nombre);
-    
+    this.getCompanias();
   }
 
   crearForm() {
     this.formu = this.fb.group({
-      compania: [ , [Validators.required]],
-      periodo: [ , [Validators.required]],
-      cdr: [ , [Validators.required]],
-
+      compania: [, [Validators.required]],
+      periodo: [, [Validators.required]],
+      cdr: [''],
+      area: [''],
+      aprc: [''],
     });
   }
 
-  saveButon(v){
-    if(this.formu.valid){
+  getCompanias() {
+    this.generalService.getCompaniaService()
+      .subscribe(
+        (data: any) => {
+          this.companiasArr = data.resultFisrt;
+          let idVal = this.companiasArr.length > 0 ? this.companiasArr[0].code : null;
+          this.formu.controls.compania.setValue(idVal);
+          this.getPeriodosInit(idVal);
+        },
+        (error) => console.log("ocurrio un error", error)
+      );
+  }
+
+  getPeriodosInit(id: string) {
+    this.generalService.getPeriodosService(id)
+      .subscribe(
+        (data) => {
+          this.periodosArr = data.resultFisrt;
+          let idVal = this.periodosArr.length > 0 ? this.periodosArr[0].code : null;
+          this.formu.controls.periodo.setValue(idVal);
+          this.getData();
+        },
+        (error) => console.log("ocurrio un error")
+      );
+  }
+
+  changeCompania(val) {
+    this.getPeriodos(val);
+  }
+
+  getPeriodos(id: string) {
+    this.generalService.getPeriodosService(id)
+      .subscribe(
+        (data) => {
+          this.periodosArr = data.resultFisrt;
+          let idVal = this.periodosArr.length > 0 ? this.periodosArr[0].code : null;
+          this.formu.controls.periodo.setValue(idVal);
+        },
+        (error) => console.log("ocurrio un error")
+      );
+  }
+
+  getData() {
+    this.mantenimientoService.getDataDelegadosService(this.formu.value).subscribe(
+      (data) => this.ELEMENT_DATA = data.resultFisrt,
+      (error) => console.log("ocurrio un error equivalencias")
+    );
+    this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  saveButon(val) {
+    if (this.formu.valid) {
       console.log("valid", this.formu.value);
-    }else{
-      
-      console.log("invalid", this.formu.get('compania').value);
+    } else {
+      console.log("invalid");
       this.formu.markAllAsTouched();
     }
   }
 
-  abrirModal(e){
-    e.preventDefault();
+  abrirModal(fila) {
+    console.log("editar: ", fila);
+
     const dialogRef = this.dialog.open(ModalAsigrescertComponent, {
       maxHeight: '90vh',
-      width: '70vw'
+      width: '70vw',
+      disableClose: false,
+      data: {
+        compania: fila.Delegate_company_code,
+        desCompania: fila.Description_company,
+        periodo: this.formu.get('periodo').value,
+        area: fila.Functional_unit_code,
+        desArea: fila.Functional_unit_description
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

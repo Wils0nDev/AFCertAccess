@@ -14,9 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatCheckboxComponent } from './mat-checkbox/mat-checkbox.component';
 import { MatInputComponent } from './mat-input/mat-input.component';
+import { MatTextareaComponent } from './mat-textarea/mat-textarea.component';
 
 @NgModule({
-  declarations: [MatMenuComponent, MatToolbarComponent, MatCardTitleComponent, MatSelectFormComponent, MatDatepickerFormComponent, MatLabelFormComponent, MatButtonComponent, MatCheckboxComponent, MatInputComponent],
+  declarations: [MatMenuComponent, MatToolbarComponent, MatCardTitleComponent, MatSelectFormComponent, MatDatepickerFormComponent, MatLabelFormComponent, MatButtonComponent, MatCheckboxComponent, MatInputComponent, MatTextareaComponent],
   imports: [
     CommonModule,
     ModulesMaterialModule,
@@ -31,7 +32,8 @@ import { MatInputComponent } from './mat-input/mat-input.component';
         MatButtonComponent,
         MatSelectFormComponent,
         MatDatepickerFormComponent,
-        MatInputComponent 
+        MatInputComponent,
+        MatTextareaComponent
   ]
 })
 export class ComponentsGlobalsModule { }

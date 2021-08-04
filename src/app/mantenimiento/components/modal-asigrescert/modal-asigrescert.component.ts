@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalBusquedatrabajadorComponent } from '../modal-busquedatrabajador/modal-busquedatrabajador.component';
 
 @Component({
@@ -19,20 +19,34 @@ export class ModalAsigrescertComponent implements OnInit {
     {id: 3, name:"chiclayo"},
   ];
 
-
-  
-  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
+  constructor(
+    private fb: FormBuilder, 
+    public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.crearForm();
+      console.log("modal1:", data);
+    }
 
   ngOnInit(): void {
-    this.crearForm();
+    this.formu.get('compania').setValue(this.data.compania);
+    this.formu.get('descompañia').setValue(this.data.desCompania.trim());
+    this.formu.get('periodo').setValue(this.data.periodo);
+    this.formu.get('area').setValue(this.data.area);
+    this.formu.get('desarea').setValue(this.data.desArea.trim());
   }
 
   crearForm() {
     this.formu = this.fb.group({
-      compania: [1 , [Validators.required]],
-      area: [1],
-      periodo: [1 , [Validators.required]],
-      estado: [1],
+      compania: [ ],
+      descompañia: [ ],
+      periodo: [ ],
+      area: [],
+      desarea: [],
+      respcert: [],
+      desrespcert: [],
+      ciaresp: [],
+      desciaresp: [],
+      docsustento: []
     });
   }
 

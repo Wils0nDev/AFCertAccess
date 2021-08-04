@@ -6,13 +6,13 @@
     <mat-card fxFlex="100" fxFlex.xs="100">
         <form [formGroup]="formu">
             <mat-card-content class="mat-content-iz" fxFlex="80" fxFlex.xs="100" fxLayout="row wrap">
-                <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia"
-                    [data]="companias">
+                <app-mat-select-form fxFlex="40" fxFlex.xs="100" (changeSelect)="changeCompania($event)" [formulario]='formu' name='compania' label="Compañia"
+                    [data]="companiasArr">
                 </app-mat-select-form>
 
                 <div fxFlex="10" fxFlex.xs="100"></div>
                 <app-mat-select-form fxFlex="40" fxFlex.xs="100" [formulario]='formu' name='periodo' label="Periodo"
-                    [data]="periodos">
+                    [data]="periodosArr">
                 </app-mat-select-form>
 
 
@@ -32,12 +32,9 @@
                     label="Ape. Pat. Responsable Cert.">
                 </app-mat-input>
 
-
-
             </mat-card-content>
-            <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end"
-                style="margin-right: 5px">
-                <app-mat-button titlebutton="Consultar" icon="search"></app-mat-button>
+            <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start center">
+                <app-mat-button titlebutton="Consultar" icon="search" (saveClick)="saveButon($event)"></app-mat-button>
                 <app-mat-button titlebutton="Salir" icon="close"></app-mat-button>
             </mat-card-actions>
         </form>
@@ -49,39 +46,39 @@
         <!-- <mat-card-title>tabla</mat-card-title> -->
         <mat-card-content fxFlex="100" fxFlex.xs="100" fxLayout="row wrap" class="mat-elevation-z8 tabla-content">
             <table mat-table [dataSource]="dataSource" class="table-data">
-                <ng-container matColumnDef="eliminar">
+                <ng-container matColumnDef="accion">
                     <th mat-header-cell *matHeaderCellDef class="column-center"> Acción </th>
                     <td mat-cell *matCellDef="let element" class="action-btn column-center">
-                        <button mat-raised-button color="primary" (click)="abrirModal($event)" >Editar</button>
+                        <button mat-raised-button color="primary" (click)="abrirModal(element)" >Editar</button>
                     </td>
                 </ng-container>
                
-                <ng-container matColumnDef="compania">
-                    <th mat-header-cell *matHeaderCellDef> Compañia </th>
-                    <td mat-cell *matCellDef="let element"> {{element.compania}} </td>
+                <ng-container matColumnDef="codarea">
+                    <th mat-header-cell *matHeaderCellDef> Cod. Area </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Functional_unit_code}} </td>
                 </ng-container>
-                <ng-container matColumnDef="periodo">
-                    <th mat-header-cell *matHeaderCellDef> Periodo </th>
-                    <td mat-cell *matCellDef="let element"> {{element.periodo}} </td>
+                <ng-container matColumnDef="area">
+                    <th mat-header-cell *matHeaderCellDef> Area </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Functional_unit_description}} </td>
                 </ng-container>
-                <ng-container matColumnDef="fechai">
-                    <th mat-header-cell *matHeaderCellDef> Fecha Inicial </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fechai}} </td>
+                <ng-container matColumnDef="responsable">
+                    <th mat-header-cell *matHeaderCellDef> Responsable Cert. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Delegate}} </td>
                 </ng-container>
-                <ng-container matColumnDef="fechac">
-                    <th mat-header-cell *matHeaderCellDef> Fecha Cierre </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fechac}} </td>
+                <ng-container matColumnDef="ciaresp">
+                    <th mat-header-cell *matHeaderCellDef> Cia. Responsable </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Description_company}} </td>
                 </ng-container>
                 <ng-container matColumnDef="situacion">
                     <th mat-header-cell *matHeaderCellDef> Situación </th>
-                    <td mat-cell *matCellDef="let element"> {{element.situacion}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.Delegate_code}} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
-            <mat-paginator class="paginador" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+            <mat-paginator class="paginador" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
             </mat-paginator>
         </mat-card-content>
     </mat-card>

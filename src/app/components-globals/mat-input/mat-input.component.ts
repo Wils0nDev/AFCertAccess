@@ -7,12 +7,12 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./mat-input.component.css']
 })
 export class MatInputComponent implements OnInit {
-
-
   @Input() data: any;
   @Input() label: string = '';
   @Input() formulario: FormGroup;
-  @Input() name: any;
+  @Input() name: string;
+  @Input() desabilitar: boolean = false;
+  
 
   constructor() { }
 

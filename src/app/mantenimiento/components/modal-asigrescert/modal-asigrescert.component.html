@@ -5,34 +5,40 @@
 <section fxLayout="row wrap" fxLayoutAlign="space-between" class="section-content">
     <mat-card fxFlex="100" fxFlex.xs="100" >
         <mat-card-content class="mat-content-iz" fxFlex="80" fxFlex.xs="100" fxLayout="row wrap">
-                
-            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Compañia" >
+            
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='compania' label="Compañia" desabilitar="true">
             </app-mat-input>
             <div fxFlex="5" fxFlex.xs="100"></div>
-            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='cdr' label="" >
+            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='descompañia' label="" desabilitar="true">
             </app-mat-input>
            
-            <app-mat-input fxFlex="100" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Periodo" >
+            <app-mat-input fxFlex="100" fxFlex.xs="100" [formulario]='formu' name='periodo' label="Periodo" desabilitar="true">
             </app-mat-input>
-            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Area" >
+
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='area' label="Area" desabilitar="true">
             </app-mat-input>
             <div fxFlex="5" fxFlex.xs="100"></div>
-
-            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='cdr' label="" >4
+            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='desarea' label="" desabilitar="true">
             </app-mat-input>
 
-            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='cdr' label="Responsable Cert." >
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='respcert' label="Responsable Cert." desabilitar="true">
             </app-mat-input>
-            
             <button mat-mini-fab color="primary" (click)="openModalBusqueda($event)" >
                 <mat-icon>search</mat-icon>
             </button>
-
-            <app-mat-input fxFlex="70" fxFlex.xs="100" [formulario]='formu' name='cdr' label="" >4
+            <app-mat-input fxFlex="70" fxFlex.xs="100" [formulario]='formu' name='desrespcert' label="" desabilitar="true">
             </app-mat-input>
 
+            <app-mat-input fxFlex="20" fxFlex.xs="100" [formulario]='formu' name='ciaresp' label="Cia Responsable Cert." desabilitar="true">
+            </app-mat-input>
+            <div fxFlex="5" fxFlex.xs="100"></div>
+            <app-mat-input fxFlex="75" fxFlex.xs="100" [formulario]='formu' name='desciaresp' label="" desabilitar="true">
+            </app-mat-input>
+
+            <app-mat-textarea fxFlex="100" fxFlex.xs="100" [formulario]='formu' name='docsustento' label="Doc. Sustento"></app-mat-textarea>
         </mat-card-content>
-        <mat-card-actions fxFlex="20" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="space-around flex-end" style="margin-right: 5px">
+        <div fxFlex="5" fxFlex.xs="100"></div>
+        <mat-card-actions fxFlex="15" fxFlex.xs="100" fxLayout="column"  fxLayoutGap="10px" fxLayoutAlign="start center">
             <app-mat-button titlebutton="Aceptar" icon="save"></app-mat-button>
             <app-mat-button titlebutton="Cancelar" icon="close" mat-dialog-close></app-mat-button>
             <app-mat-button titlebutton="Salir" icon="close" mat-dialog-close></app-mat-button>
