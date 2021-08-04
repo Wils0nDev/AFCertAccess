@@ -38,9 +38,9 @@ export class ModalAsigrescertComponent implements OnInit {
 
   openModalBusqueda(e){
     e.preventDefault();
-    console.log("dddddddddd");
     const dialogRef = this.dialog.open(ModalBusquedatrabajadorComponent, {
       maxHeight: '90vh',
+      width: '50vw'
     });
 
     dialogRef.afterClosed().subscribe(result => {

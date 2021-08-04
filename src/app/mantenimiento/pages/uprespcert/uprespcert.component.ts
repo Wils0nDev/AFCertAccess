@@ -78,9 +78,9 @@ export class UprespcertComponent implements OnInit {
 
   abrirModal(e){
     e.preventDefault();
-    console.log("dddddddddd");
     const dialogRef = this.dialog.open(ModalAsigrescertComponent, {
       maxHeight: '90vh',
+      width: '70vw'
     });
 
     dialogRef.afterClosed().subscribe(result => {

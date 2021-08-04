@@ -67,9 +67,9 @@ export class BandObservationsComponent implements OnInit {
 
   abrirModal(e){
     e.preventDefault();
-    console.log("dddddddddd");
     const dialogRef = this.dialog.open(ModalInicioComponent, {
       maxHeight: '90vh',
+      width: '90vw'
     });
 
     dialogRef.afterClosed().subscribe(result => {
