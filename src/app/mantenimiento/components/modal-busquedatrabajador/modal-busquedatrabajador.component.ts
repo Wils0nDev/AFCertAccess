@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalAsigrescertComponent } from '../../components/modal-asigrescert/modal-asigrescert.component';
-import { MatDialog } from '@angular/material/dialog';
+
 const ELEMENT_DATA: any[] = [
   {eliminar: 1, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
   {eliminar: 2, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
@@ -15,17 +14,13 @@ const ELEMENT_DATA: any[] = [
 ];
 
 @Component({
-  selector: 'app-uprespcert',
-  templateUrl: './uprespcert.component.html',
-  styleUrls: ['./uprespcert.component.css']
+  selector: 'app-modal-busquedatrabajador',
+  templateUrl: './modal-busquedatrabajador.component.html',
+  styleUrls: ['./modal-busquedatrabajador.component.css']
 })
-export class UprespcertComponent implements OnInit {
+export class ModalBusquedatrabajadorComponent implements OnInit {
 
   formu: FormGroup;
-
-  public title : string = "Mantenimiento de Calendario de Procesos";
-
-  public submit: string = "submit"
 
   companias = [
     {id: null, name:"Selecionar"},
@@ -34,58 +29,22 @@ export class UprespcertComponent implements OnInit {
     {id: 3, name:"chiclayo"},
   ];
 
-  periodos = [
-    {id: null, name:"Selecionar"},
-    {id: 1, name:"peru"},
-    {id: 2, name:"lima"},
-    {id: 3, name:"chiclayo"},
-  ]
-
   displayedColumns: string[] = ['eliminar', 'compania', 'periodo', 'fechai', 'fechac', 'situacion'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
- 
-
-  constructor(private fb: FormBuilder,  public dialog: MatDialog) { }
+  
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.crearForm();
-    this.dataSource.paginator = this.paginator;
-    
-    // let nombre = localStorage.getItem("nombre");
-    // console.log("aaa: ", nombre);
-    
   }
 
   crearForm() {
     this.formu = this.fb.group({
-      compania: [ , [Validators.required]],
-      periodo: [ , [Validators.required]],
-      cdr: [ , [Validators.required]],
-
+      compania: [1 , [Validators.required]],
+      area: [1],
+      periodo: [1 , [Validators.required]],
+      estado: [1],
     });
   }
-
-  saveButon(v){
-    if(this.formu.valid){
-      console.log("valid", this.formu.value);
-    }else{
-      
-      console.log("invalid", this.formu.get('compania').value);
-      this.formu.markAllAsTouched();
-    }
-  }
-
-  abrirModal(e){
-    e.preventDefault();
-    console.log("dddddddddd");
-    const dialogRef = this.dialog.open(ModalAsigrescertComponent, {
-      maxHeight: '90vh',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
 }
