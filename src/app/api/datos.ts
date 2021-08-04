@@ -50,14 +50,4 @@ export const sistemas = {
   "resultSecond": null
 }
 
-export const sistemas2 = {
-  "HttpStatusResult": 200,
-  "estado": true,
-  "mensaje": null,
-  "resultFisrt": [
-    { id: 1, name: 'sys' },
-    { id: 2, name: 'Spring' },
-    { id: 3, name: 'java' },
-  ],
-  "resultSecond": null
-}
+
