@@ -4,13 +4,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 const ELEMENT_DATA: any[] = [
-  {eliminar: 1, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 2, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 3, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 4, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 5, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 6, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
-  {eliminar: 7, compania: 'Banco', periodo: 202106, fechai: '20/04/2021', fechac: '20/04/2021', situacion: 'enviado'},
+  {eliminar: 1, compania: 'Banco'},
+  {eliminar: 2, compania: 'Banco'},
+  {eliminar: 3, compania: 'Banco'},
+  {eliminar: 4, compania: 'Banco'},
+  {eliminar: 5, compania: 'Banco'},
+  {eliminar: 6, compania: 'Banco'},
+  {eliminar: 7, compania: 'Banco'},
 ];
 
 @Component({
@@ -29,7 +29,7 @@ export class ModalBusquedatrabajadorComponent implements OnInit {
     {id: 3, name:"chiclayo"},
   ];
 
-  displayedColumns: string[] = ['eliminar', 'compania', 'periodo', 'fechai', 'fechac', 'situacion'];
+  displayedColumns: string[] = ['eliminar', 'compania'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
   
